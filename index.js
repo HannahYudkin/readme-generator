@@ -1,4 +1,5 @@
 var inquirer = require("inquirer");
+const axios = require("axios");
 var fs = require("fs");
 
 
@@ -60,7 +61,7 @@ function init() {
     .then(answers => {
       //ajax call -> 
       // Use user feedback for... whatever!!
-      console.log(answers)
+      //console.log(answers)
       const profileString = 
 `# ${answers.title}
 
@@ -68,7 +69,12 @@ ${answers.description}
 
 ## Table of Contents
 
-???
+[Installation](#Installation)
+[Usage](#Usage)
+[License](#License)
+[Contribution](#Contribution)
+[Tests](#Tests)
+
 
 ## Installation
 
