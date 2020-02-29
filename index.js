@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 const axios = require("axios");
+const api = require("./utils/api")
 var fs = require("fs");
 
 
@@ -43,6 +44,11 @@ const questions = [
     type: "input",
     name: "tests",
     message: "What are the tests associated with this project?"
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the email associated with this project?"
   }
 ];
 
@@ -59,9 +65,23 @@ function init() {
   inquirer
     .prompt(questions)
     .then(answers => {
+      api.getUser(`${answers.username}`)
+      let gitImage = api.gitImage
+
+
+
+
+
+      
       //ajax call -> 
       // Use user feedback for... whatever!!
       //console.log(answers)
+      
+      
+      
+      
+      
+      
       const profileString = 
 `# ${answers.title}
 
@@ -69,11 +89,12 @@ ${answers.description}
 
 ## Table of Contents
 
-[Installation](#Installation)
-[Usage](#Usage)
-[License](#License)
-[Contribution](#Contribution)
-[Tests](#Tests)
+* [Installation](#Installation) 
+* [Usage](#Usage)
+* [License](#License)
+* [Contribution](#Contribution)
+* [Tests](#Tests)
+* [Questions](#Questions)
 
 
 ## Installation
@@ -98,6 +119,11 @@ ${answers.contribution}
 ## Tests
 
 ${answers.tests}
+
+##Questions 
+
+Contact me at ${answers.email}.
+![Image](${gitImage})
 `
       writeToFile("README.md", profileString)
     });
@@ -108,3 +134,4 @@ ${answers.tests}
 //https://api.github.com/users/hannahyudkin/repos
 
 init();
+//console.log(api.getUser)
