@@ -1,6 +1,6 @@
 var inquirer = require("inquirer");
 const axios = require("axios");
-const api = require("./utils/api")
+const api = require("./api")
 var fs = require("fs");
 
 
@@ -67,6 +67,7 @@ function init() {
     .then(answers => {
       api.getUser(`${answers.username}`)
       let gitImage = api.gitImage
+      console.log(gitImage)
 
 
 
