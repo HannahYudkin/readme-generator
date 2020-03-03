@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "02-Homework/Develop/.env" });
+require("dotenv").config();
 const axios = require("axios");
 const token = process.env.GITHUB_TOKEN;
 
@@ -17,5 +17,3 @@ const api = {
 }
 
 module.exports = api;
-
-//api.getUser("lalliere")
