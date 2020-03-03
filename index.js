@@ -65,26 +65,15 @@ function init() {
   inquirer
     .prompt(questions)
     .then(answers => {
-      api.getUser(`${answers.username}`)
-      let gitImage = api.gitImage
-      console.log(gitImage)
+      api.getUser(`${answers.username}`).then(function(response) {
+      let image= response.data.email;
+      console.log(image)
 
 
 
-
-
-      
-      //ajax call -> 
-      // Use user feedback for... whatever!!
-      //console.log(answers)
-      
-      
-      
-      
-      
-      
       const profileString = 
 `# ${answers.title}
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 ${answers.description}
 
@@ -93,7 +82,7 @@ ${answers.description}
 * [Installation](#Installation) 
 * [Usage](#Usage)
 * [License](#License)
-* [Contribution](#Contribution)
+* [Contributors](#Contributors)
 * [Tests](#Tests)
 * [Questions](#Questions)
 
@@ -125,9 +114,11 @@ ${answers.tests}
 
 Contact me at ${answers.email}.
 ![Image](${gitImage})
-`
+`;
+      
       writeToFile("README.md", profileString)
     });
+  });
 }
 
 
